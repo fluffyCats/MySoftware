@@ -1,7 +1,10 @@
 
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 /*
  * To change this template, choose Tools | Templates
@@ -17,6 +20,10 @@ public class NewJFrame extends javax.swing.JFrame {
     public ArrayList buttonList = new ArrayList(100);
     public int[] intArray = massArray();
     public Ball tempBall;
+    public boolean flag = false;
+    public boolean isShrink = true;
+    public boolean gameStart = false;
+    public Grid movingGrid ;
 
     /**
      * Creates new form NewJFrame
@@ -274,6 +281,7 @@ public class NewJFrame extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         jPanel1.add(bt0, gridBagConstraints);
         buttonList.add(bt0);
+        buttonList.set(0, bt0);
 
         bt10.setPreferredSize(new java.awt.Dimension(40, 40));
         bt10.addActionListener(new java.awt.event.ActionListener() {
@@ -310,6 +318,7 @@ public class NewJFrame extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         jPanel1.add(bt1, gridBagConstraints);
         buttonList.add(bt1);
+        buttonList.set(1, bt1);
 
         bt11.setPreferredSize(new java.awt.Dimension(40, 40));
         bt11.addActionListener(new java.awt.event.ActionListener() {
@@ -334,6 +343,7 @@ public class NewJFrame extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         jPanel1.add(bt2, gridBagConstraints);
         buttonList.add(bt2);
+        buttonList.set(2, bt2);
 
         bt3.setPreferredSize(new java.awt.Dimension(40, 40));
         bt3.addActionListener(new java.awt.event.ActionListener() {
@@ -346,6 +356,7 @@ public class NewJFrame extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         jPanel1.add(bt3, gridBagConstraints);
         buttonList.add(bt3);
+        buttonList.set(3, bt3);
 
         bt4.setPreferredSize(new java.awt.Dimension(40, 40));
         bt4.addActionListener(new java.awt.event.ActionListener() {
@@ -358,6 +369,7 @@ public class NewJFrame extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         jPanel1.add(bt4, gridBagConstraints);
         buttonList.add(bt4);
+        buttonList.set(4, bt4);
 
         bt5.setPreferredSize(new java.awt.Dimension(40, 40));
         bt5.addActionListener(new java.awt.event.ActionListener() {
@@ -370,6 +382,7 @@ public class NewJFrame extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         jPanel1.add(bt5, gridBagConstraints);
         buttonList.add(bt5);
+        buttonList.set(5, bt5);
 
         bt6.setPreferredSize(new java.awt.Dimension(40, 40));
         bt6.addActionListener(new java.awt.event.ActionListener() {
@@ -382,6 +395,7 @@ public class NewJFrame extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         jPanel1.add(bt6, gridBagConstraints);
         buttonList.add(bt6);
+        buttonList.set(6, bt6);
 
         bt7.setPreferredSize(new java.awt.Dimension(40, 40));
         bt7.addActionListener(new java.awt.event.ActionListener() {
@@ -394,6 +408,7 @@ public class NewJFrame extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         jPanel1.add(bt7, gridBagConstraints);
         buttonList.add(bt7);
+        buttonList.set(7, bt7);
 
         bt8.setPreferredSize(new java.awt.Dimension(40, 40));
         bt8.addActionListener(new java.awt.event.ActionListener() {
@@ -406,6 +421,7 @@ public class NewJFrame extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         jPanel1.add(bt8, gridBagConstraints);
         buttonList.add(bt8);
+        buttonList.set(8, bt8);
 
         bt9.setPreferredSize(new java.awt.Dimension(40, 40));
         bt9.addActionListener(new java.awt.event.ActionListener() {
@@ -418,6 +434,7 @@ public class NewJFrame extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         jPanel1.add(bt9, gridBagConstraints);
         buttonList.add(bt9);
+        buttonList.set(9, bt9);
 
         bt12.setPreferredSize(new java.awt.Dimension(40, 40));
         bt12.addActionListener(new java.awt.event.ActionListener() {
@@ -1492,1732 +1509,532 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton80ActionPerformed
 
     private void bt0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt0ActionPerformed
-        if ((((Grid) bt0).ball) == null) {
-            if (tempBall == null) {
-                ((Grid) bt0).setBackground(null);
-            } else {
-                ((Grid) bt0).CreateTheBall(tempBall.color);
-                ((Grid) bt0).setBackground((((Grid) bt0).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt0).ball) != null) {
-            tempBall = (((Grid) bt0).ball);
-            (((Grid) bt0).ball) = null;
-            ((Grid) bt0).setBackground(null);
-        }
+        buttonAction(0);
     }//GEN-LAST:event_bt0ActionPerformed
 
     private void jButton81ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton81ActionPerformed
-
-        int temp1 = findThePosition();
-        ((Grid) buttonList.get(temp1)).CreateTheBall();
-        ((Grid) buttonList.get(temp1)).setBackground(((Grid) buttonList.get(temp1)).ball.color);
-        int temp2 = findThePosition();
-        ((Grid) buttonList.get(temp2)).CreateTheBall();
-        ((Grid) buttonList.get(temp2)).setBackground(((Grid) buttonList.get(temp2)).ball.color);
-        int temp3 = findThePosition();
-        ((Grid) buttonList.get(temp3)).CreateTheBall();
-        ((Grid) buttonList.get(temp3)).setBackground(((Grid) buttonList.get(temp3)).ball.color);
-        /**
-         * int a = (int)(Math.random()*10); int b = (int)(Math.random()*10);
-         * Point tempPoint = new Point(a,b);
-         *
-         *
-         * for(int i = 0;i<=99;i++){
-         * if(((Grid)buttonList.get(i)).coodrinate.equals(tempPoint)){ if(
-         * ((Grid)buttonList.get(i)).ball != null){ break; }
-         * ((Grid)buttonList.get(i)).CreateTheBall();
-         * ((Grid)buttonList.get(i)).setBackground(
-         * ((Grid)buttonList.get(i)).ball.color); break; } }
-         *
-         */
+        if(!gameStart){
+            createThreeBall();
+            gameStart = true;
+        }
     }//GEN-LAST:event_jButton81ActionPerformed
 
     private void bt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt1ActionPerformed
-        if ((((Grid) bt1).ball) != null) {
-            tempBall = (((Grid) bt1).ball);
-            (((Grid) bt1).ball) = null;
-            ((Grid) bt1).setBackground(null);
-        } else if ((((Grid) bt1).ball) == null) {
-
-            if (tempBall == null) {
-                ((Grid) bt1).setBackground(null);
-            } else {
-                ((Grid) bt1).CreateTheBall(tempBall.color);
-                ((Grid) bt1).setBackground((((Grid) bt1).ball).color);
-                tempBall = null;
-            }
-        } // TODO add your handling code here:
+        buttonAction(1);
     }//GEN-LAST:event_bt1ActionPerformed
 
     private void bt9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt9ActionPerformed
-        if ((((Grid) bt9).ball) == null) {
-            if (tempBall == null) {
-                ((Grid) bt9).setBackground(null);
-            } else {
-                ((Grid) bt9).CreateTheBall(tempBall.color);
-                ((Grid) bt9).setBackground((((Grid) bt9).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt9).ball) != null) {
-            tempBall = (((Grid) bt9).ball);
-            (((Grid) bt9).ball) = null;
-            ((Grid) bt9).setBackground(null);
-        }
+        
+        buttonAction(9);
     }//GEN-LAST:event_bt9ActionPerformed
 
     private void bt2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt2ActionPerformed
-        if ((((Grid) bt2).ball) != null) {
-            tempBall = (((Grid) bt2).ball);
-            (((Grid) bt2).ball) = null;
-            ((Grid) bt2).setBackground(null);
-        } else if ((((Grid) bt2).ball) == null) {
-            (((Grid) bt2).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt2).setBackground(null);
-            } else {
-                ((Grid) bt2).CreateTheBall(tempBall.color);
-                ((Grid) bt2).setBackground((((Grid) bt2).ball).color);
-                tempBall = null;
-            }
-        }         // TODO add your handling code here:
+                buttonAction(2);     // TODO add your handling code here:
     }//GEN-LAST:event_bt2ActionPerformed
 
     private void bt3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt3ActionPerformed
-        if ((((Grid) bt3).ball) != null) {
-            tempBall = (((Grid) bt3).ball);
-            (((Grid) bt3).ball) = null;
-            ((Grid) bt3).setBackground(null);
-        } else if ((((Grid) bt3).ball) == null) {
-            (((Grid) bt3).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt3).setBackground(null);
-            } else {
-                ((Grid) bt3).CreateTheBall(tempBall.color);
-                ((Grid) bt3).setBackground((((Grid) bt3).ball).color);
-                tempBall = null;
-            }
-        }         // TODO add your handling code here:
+        
+        buttonAction(3);       // TODO add your handling code here:
     }//GEN-LAST:event_bt3ActionPerformed
 
     private void bt4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt4ActionPerformed
-        if ((((Grid) bt4).ball) != null) {
-            tempBall = (((Grid) bt4).ball);
-            (((Grid) bt4).ball) = null;
-            ((Grid) bt4).setBackground(null);
-        } else if ((((Grid) bt4).ball) == null) {
-            (((Grid) bt4).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt4).setBackground(null);
-            } else {
-                ((Grid) bt4).CreateTheBall(tempBall.color);
-                ((Grid) bt4).setBackground((((Grid) bt4).ball).color);
-                tempBall = null;
-            }
-        }         // TODO add your handling code here:
+        
+        buttonAction(4);     // TODO add your handling code here:
     }//GEN-LAST:event_bt4ActionPerformed
 
     private void bt5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt5ActionPerformed
-        if ((((Grid) bt5).ball) != null) {
-            tempBall = (((Grid) bt5).ball);
-            (((Grid) bt5).ball) = null;
-            ((Grid) bt5).setBackground(null);
-        } else if ((((Grid) bt5).ball) == null) {
-            (((Grid) bt5).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt5).setBackground(null);
-            } else {
-                ((Grid) bt5).CreateTheBall(tempBall.color);
-                ((Grid) bt5).setBackground((((Grid) bt5).ball).color);
-                tempBall = null;
-            }
-        }         // TODO add your handling code here:
+        
+        buttonAction(5);     // TODO add your handling code here:
     }//GEN-LAST:event_bt5ActionPerformed
 
     private void bt6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt6ActionPerformed
-        if ((((Grid) bt6).ball) != null) {
-            tempBall = (((Grid) bt6).ball);
-            (((Grid) bt6).ball) = null;
-            ((Grid) bt6).setBackground(null);
-        } else if ((((Grid) bt6).ball) == null) {
-            (((Grid) bt6).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt6).setBackground(null);
-            } else {
-                ((Grid) bt6).CreateTheBall(tempBall.color);
-                ((Grid) bt6).setBackground((((Grid) bt6).ball).color);
-                tempBall = null;
-            }
-        }         // TODO add your handling code here:
+        
+        buttonAction(6);      // TODO add your handling code here:
     }//GEN-LAST:event_bt6ActionPerformed
 
     private void bt7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt7ActionPerformed
-        if ((((Grid) bt7).ball) != null) {
-            tempBall = (((Grid) bt7).ball);
-            (((Grid) bt7).ball) = null;
-            ((Grid) bt7).setBackground(null);
-        } else if ((((Grid) bt7).ball) == null) {
-            (((Grid) bt7).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt7).setBackground(null);
-            } else {
-                ((Grid) bt7).CreateTheBall(tempBall.color);
-                ((Grid) bt7).setBackground((((Grid) bt7).ball).color);
-                tempBall = null;
-            }
-        }         // TODO add your handling code here:
+        
+        buttonAction(7);       // TODO add your handling code here:
     }//GEN-LAST:event_bt7ActionPerformed
 
     private void bt8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt8ActionPerformed
-        if ((((Grid) bt8).ball) != null) {
-            tempBall = (((Grid) bt8).ball);
-            (((Grid) bt8).ball) = null;
-            ((Grid) bt8).setBackground(null);
-        } else if ((((Grid) bt8).ball) == null) {
-            (((Grid) bt8).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt8).setBackground(null);
-            } else {
-                ((Grid) bt8).CreateTheBall(tempBall.color);
-                ((Grid) bt8).setBackground((((Grid) bt8).ball).color);
-                tempBall = null;
-            }
-        }         // TODO add your handling code here:
+        
+        buttonAction(8);     // TODO add your handling code here:
     }//GEN-LAST:event_bt8ActionPerformed
 
     private void bt10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt10ActionPerformed
-        if ((((Grid) bt10).ball) != null) {
-            tempBall = (((Grid) bt10).ball);
-            (((Grid) bt10).ball) = null;
-            ((Grid) bt10).setBackground(null);
-        } else if ((((Grid) bt10).ball) == null) {
-            (((Grid) bt10).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt10).setBackground(null);
-            } else {
-                ((Grid) bt10).CreateTheBall(tempBall.color);
-                ((Grid) bt10).setBackground((((Grid) bt10).ball).color);
-                tempBall = null;
-            }
-        }         // TODO add your handling code here:
+        buttonList.set(10, bt10);
+        buttonAction(10);       // TODO add your handling code here:
     }//GEN-LAST:event_bt10ActionPerformed
 
     private void bt11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt11ActionPerformed
-        if ((((Grid) bt11).ball) != null) {
-            tempBall = (((Grid) bt11).ball);
-            (((Grid) bt11).ball) = null;
-            ((Grid) bt11).setBackground(null);
-        } else if ((((Grid) bt11).ball) == null) {
-            (((Grid) bt11).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt11).setBackground(null);
-            } else {
-                ((Grid) bt11).CreateTheBall(tempBall.color);
-                ((Grid) bt11).setBackground((((Grid) bt11).ball).color);
-                tempBall = null;
-            }
-        }         // TODO add your handling code here:
+        buttonList.set(11, bt11);
+        buttonAction(11);        // TODO add your handling code here:
     }//GEN-LAST:event_bt11ActionPerformed
 
     private void bt12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt12ActionPerformed
-        if ((((Grid) bt12).ball) != null) {
-            tempBall = (((Grid) bt12).ball);
-            (((Grid) bt12).ball) = null;
-            ((Grid) bt12).setBackground(null);
-        } else if ((((Grid) bt12).ball) == null) {
-            (((Grid) bt12).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt12).setBackground(null);
-            } else {
-                ((Grid) bt12).CreateTheBall(tempBall.color);
-                ((Grid) bt12).setBackground((((Grid) bt12).ball).color);
-                tempBall = null;
-            }
-        }         // TODO add your handling code here:
+        buttonList.set(12, bt12);
+        buttonAction(12);       // TODO add your handling code here:
     }//GEN-LAST:event_bt12ActionPerformed
 
     private void bt13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt13ActionPerformed
-        if ((((Grid) bt13).ball) != null) {
-            tempBall = (((Grid) bt13).ball);
-            (((Grid) bt13).ball) = null;
-            ((Grid) bt13).setBackground(null);
-        } else if ((((Grid) bt13).ball) == null) {
-            (((Grid) bt13).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt13).setBackground(null);
-            } else {
-                ((Grid) bt13).CreateTheBall(tempBall.color);
-                ((Grid) bt13).setBackground((((Grid) bt13).ball).color);
-                tempBall = null;
-            }
-        }         // TODO add your handling code here:
+        buttonList.set(13, bt13);
+        buttonAction(13);     // TODO add your handling code here:
     }//GEN-LAST:event_bt13ActionPerformed
 
     private void bt14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt14ActionPerformed
-        if ((((Grid) bt14).ball) != null) {
-            tempBall = (((Grid) bt14).ball);
-            (((Grid) bt14).ball) = null;
-            ((Grid) bt14).setBackground(null);
-        } else if ((((Grid) bt14).ball) == null) {
-            (((Grid) bt14).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt14).setBackground(null);
-            } else {
-                ((Grid) bt14).CreateTheBall(tempBall.color);
-                ((Grid) bt14).setBackground((((Grid) bt14).ball).color);
-                tempBall = null;
-            }
-        }         // TODO add your handling code here:
+        buttonList.set(14, bt14);
+        buttonAction(14);       // TODO add your handling code here:
     }//GEN-LAST:event_bt14ActionPerformed
 
     private void bt15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt15ActionPerformed
-        if ((((Grid) bt15).ball) != null) {
-            tempBall = (((Grid) bt15).ball);
-            (((Grid) bt15).ball) = null;
-            ((Grid) bt15).setBackground(null);
-        } else if ((((Grid) bt15).ball) == null) {
-            (((Grid) bt15).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt15).setBackground(null);
-            } else {
-                ((Grid) bt15).CreateTheBall(tempBall.color);
-                ((Grid) bt15).setBackground((((Grid) bt15).ball).color);
-                tempBall = null;
-            }
-        }         // TODO add your handling code here:
+        buttonList.set(15, bt15);
+        buttonAction(15);     // TODO add your handling code here:
     }//GEN-LAST:event_bt15ActionPerformed
 
     private void bt16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt16ActionPerformed
-        if ((((Grid) bt16).ball) != null) {
-            tempBall = (((Grid) bt16).ball);
-            (((Grid) bt16).ball) = null;
-            ((Grid) bt16).setBackground(null);
-        } else if ((((Grid) bt16).ball) == null) {
-            (((Grid) bt16).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt16).setBackground(null);
-            } else {
-                ((Grid) bt16).CreateTheBall(tempBall.color);
-                ((Grid) bt16).setBackground((((Grid) bt16).ball).color);
-                tempBall = null;
-            }
-        }         // TODO add your handling code here:
+        buttonList.set(16, bt16);
+        buttonAction(16);       // TODO add your handling code here:
     }//GEN-LAST:event_bt16ActionPerformed
 
     private void bt17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt17ActionPerformed
-        if ((((Grid) bt17).ball) != null) {
-            tempBall = (((Grid) bt17).ball);
-            (((Grid) bt17).ball) = null;
-            ((Grid) bt17).setBackground(null);
-        } else if ((((Grid) bt17).ball) == null) {
-            (((Grid) bt17).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt17).setBackground(null);
-            } else {
-                ((Grid) bt17).CreateTheBall(tempBall.color);
-                ((Grid) bt17).setBackground((((Grid) bt17).ball).color);
-                tempBall = null;
-            }
-        }         // TODO add your handling code here:
+        buttonList.set(17, bt17);
+        buttonAction(17);    // TODO add your handling code here:
     }//GEN-LAST:event_bt17ActionPerformed
 
     private void bt18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt18ActionPerformed
-        if ((((Grid) bt18).ball) != null) {
-            tempBall = (((Grid) bt18).ball);
-            (((Grid) bt18).ball) = null;
-            ((Grid) bt18).setBackground(null);
-        } else if ((((Grid) bt18).ball) == null) {
-            (((Grid) bt18).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt18).setBackground(null);
-            } else {
-                ((Grid) bt18).CreateTheBall(tempBall.color);
-                ((Grid) bt18).setBackground((((Grid) bt18).ball).color);
-                tempBall = null;
-            }
-        }         // TODO add your handling code here:
+        buttonList.set(18, bt18);
+        buttonAction(18);        // TODO add your handling code here:
     }//GEN-LAST:event_bt18ActionPerformed
 
     private void bt19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt19ActionPerformed
-        if ((((Grid) bt19).ball) != null) {
-            tempBall = (((Grid) bt19).ball);
-            (((Grid) bt19).ball) = null;
-            ((Grid) bt19).setBackground(null);
-        } else if ((((Grid) bt19).ball) == null) {
-            (((Grid) bt19).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt19).setBackground(null);
-            } else {
-                ((Grid) bt19).CreateTheBall(tempBall.color);
-                ((Grid) bt19).setBackground((((Grid) bt19).ball).color);
-                tempBall = null;
-            }
-        }         // TODO add your handling code here:
+        buttonList.set(19, bt19);
+        buttonAction(19);        // TODO add your handling code here:
     }//GEN-LAST:event_bt19ActionPerformed
 
     private void bt20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt20ActionPerformed
-        if ((((Grid) bt20).ball) != null) {
-            tempBall = (((Grid) bt20).ball);
-            (((Grid) bt20).ball) = null;
-            ((Grid) bt20).setBackground(null);
-        } else if ((((Grid) bt20).ball) == null) {
-            (((Grid) bt20).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt20).setBackground(null);
-            } else {
-                ((Grid) bt20).CreateTheBall(tempBall.color);
-                ((Grid) bt20).setBackground((((Grid) bt20).ball).color);
-                tempBall = null;
-            }
-        }         // TODO add your handling code here:
+        buttonList.set(20, bt20);
+        buttonAction(20);        // TODO add your handling code here:
     }//GEN-LAST:event_bt20ActionPerformed
 
     private void bt21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt21ActionPerformed
-        if ((((Grid) bt21).ball) != null) {
-            tempBall = (((Grid) bt21).ball);
-            (((Grid) bt21).ball) = null;
-            ((Grid) bt21).setBackground(null);
-        } else if ((((Grid) bt21).ball) == null) {
-            (((Grid) bt21).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt21).setBackground(null);
-            } else {
-                ((Grid) bt21).CreateTheBall(tempBall.color);
-                ((Grid) bt21).setBackground((((Grid) bt21).ball).color);
-                tempBall = null;
-            }
-        }         // TODO add your handling code here:
+        buttonList.set(21, bt21);
+        buttonAction(21);        // TODO add your handling code here:
     }//GEN-LAST:event_bt21ActionPerformed
 
     private void bt22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt22ActionPerformed
-        if ((((Grid) bt22).ball) != null) {
-            tempBall = (((Grid) bt22).ball);
-            (((Grid) bt22).ball) = null;
-            ((Grid) bt22).setBackground(null);
-        } else if ((((Grid) bt22).ball) == null) {
-            (((Grid) bt22).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt22).setBackground(null);
-            } else {
-                ((Grid) bt22).CreateTheBall(tempBall.color);
-                ((Grid) bt22).setBackground((((Grid) bt22).ball).color);
-                tempBall = null;
-            }
-        }         // TODO add your handling code here:
+        buttonList.set(22, bt22);
+        buttonAction(22);        // TODO add your handling code here:
     }//GEN-LAST:event_bt22ActionPerformed
 
     private void bt23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt23ActionPerformed
-        if ((((Grid) bt23).ball) != null) {
-            tempBall = (((Grid) bt23).ball);
-            (((Grid) bt23).ball) = null;
-            ((Grid) bt23).setBackground(null);
-        } else if ((((Grid) bt23).ball) == null) {
-            (((Grid) bt23).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt23).setBackground(null);
-            } else {
-                ((Grid) bt23).CreateTheBall(tempBall.color);
-                ((Grid) bt23).setBackground((((Grid) bt23).ball).color);
-                tempBall = null;
-            }
-        }         // TODO add your handling code here:
+        buttonList.set(23, bt23);
+        buttonAction(23);       // TODO add your handling code here:
     }//GEN-LAST:event_bt23ActionPerformed
 
     private void bt24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt24ActionPerformed
-        if ((((Grid) bt24).ball) != null) {
-            tempBall = (((Grid) bt24).ball);
-            (((Grid) bt24).ball) = null;
-            ((Grid) bt24).setBackground(null);
-        } else if ((((Grid) bt24).ball) == null) {
-            (((Grid) bt24).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt24).setBackground(null);
-            } else {
-                ((Grid) bt24).CreateTheBall(tempBall.color);
-                ((Grid) bt24).setBackground((((Grid) bt24).ball).color);
-                tempBall = null;
-            }
-        }         // TODO add your handling code here:
+        buttonList.set(24, bt24);
+        buttonAction(24);        // TODO add your handling code here:
     }//GEN-LAST:event_bt24ActionPerformed
 
     private void bt25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt25ActionPerformed
-        if ((((Grid) bt25).ball) != null) {
-            tempBall = (((Grid) bt25).ball);
-            (((Grid) bt25).ball) = null;
-            ((Grid) bt25).setBackground(null);
-        } else if ((((Grid) bt25).ball) == null) {
-            (((Grid) bt25).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt25).setBackground(null);
-            } else {
-                ((Grid) bt25).CreateTheBall(tempBall.color);
-                ((Grid) bt25).setBackground((((Grid) bt25).ball).color);
-                tempBall = null;
-            }
-        }         // TODO add your handling code here:
+        buttonList.set(25, bt25);
+        buttonAction(25);      // TODO add your handling code here:
     }//GEN-LAST:event_bt25ActionPerformed
 
     private void bt26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt26ActionPerformed
-        if ((((Grid) bt26).ball) != null) {
-            tempBall = (((Grid) bt26).ball);
-            (((Grid) bt26).ball) = null;
-            ((Grid) bt26).setBackground(null);
-        } else if ((((Grid) bt26).ball) == null) {
-            (((Grid) bt26).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt26).setBackground(null);
-            } else {
-                ((Grid) bt26).CreateTheBall(tempBall.color);
-                ((Grid) bt26).setBackground((((Grid) bt26).ball).color);
-                tempBall = null;
-            }
-        }         // TODO add your handling code here:
+        buttonList.set(26, bt26);
+        buttonAction(26);       // TODO add your handling code here:
     }//GEN-LAST:event_bt26ActionPerformed
 
     private void bt27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt27ActionPerformed
-        if ((((Grid) bt27).ball) != null) {
-            tempBall = (((Grid) bt27).ball);
-            (((Grid) bt27).ball) = null;
-            ((Grid) bt27).setBackground(null);
-        } else if ((((Grid) bt27).ball) == null) {
-            (((Grid) bt27).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt27).setBackground(null);
-            } else {
-                ((Grid) bt27).CreateTheBall(tempBall.color);
-                ((Grid) bt27).setBackground((((Grid) bt27).ball).color);
-                tempBall = null;
-            }
-        }         // TODO add your handling code here:
+        buttonList.set(27, bt27);
+        buttonAction(27);        // TODO add your handling code here:
     }//GEN-LAST:event_bt27ActionPerformed
 
     private void bt28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt28ActionPerformed
-        if ((((Grid) bt28).ball) != null) {
-            tempBall = (((Grid) bt28).ball);
-            (((Grid) bt28).ball) = null;
-            ((Grid) bt28).setBackground(null);
-        } else if ((((Grid) bt28).ball) == null) {
-            (((Grid) bt28).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt28).setBackground(null);
-            } else {
-                ((Grid) bt28).CreateTheBall(tempBall.color);
-                ((Grid) bt28).setBackground((((Grid) bt28).ball).color);
-                tempBall = null;
-            }
-        }         // TODO add your handling code here:
+        buttonList.set(28, bt28);
+        buttonAction(28);       // TODO add your handling code here:
     }//GEN-LAST:event_bt28ActionPerformed
 
     private void bt29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt29ActionPerformed
-        if ((((Grid) bt29).ball) != null) {
-            tempBall = (((Grid) bt29).ball);
-            (((Grid) bt29).ball) = null;
-            ((Grid) bt29).setBackground(null);
-        } else if ((((Grid) bt29).ball) == null) {
-            (((Grid) bt29).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt29).setBackground(null);
-            } else {
-                ((Grid) bt29).CreateTheBall(tempBall.color);
-                ((Grid) bt29).setBackground((((Grid) bt29).ball).color);
-                tempBall = null;
-            }
-        }         // TODO add your handling code here:
+        buttonList.set(29, bt29);
+        buttonAction(29);        // TODO add your handling code here:
     }//GEN-LAST:event_bt29ActionPerformed
 
     private void bt30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt30ActionPerformed
-        if ((((Grid) bt30).ball) != null) {
-            tempBall = (((Grid) bt30).ball);
-            (((Grid) bt30).ball) = null;
-            ((Grid) bt30).setBackground(null);
-        } else if ((((Grid) bt30).ball) == null) {
-            (((Grid) bt30).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt30).setBackground(null);
-            } else {
-                ((Grid) bt30).CreateTheBall(tempBall.color);
-                ((Grid) bt30).setBackground((((Grid) bt30).ball).color);
-                tempBall = null;
-            }
-        }         // TODO add your handling code here:
+        buttonList.set(30, bt30);
+        buttonAction(30);       // TODO add your handling code here:
     }//GEN-LAST:event_bt30ActionPerformed
 
     private void bt31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt31ActionPerformed
-        if ((((Grid) bt31).ball) == null) {
-            (((Grid) bt31).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt31).setBackground(null);
-            } else {
-                ((Grid) bt31).CreateTheBall(tempBall.color);
-                ((Grid) bt31).setBackground((((Grid) bt31).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt31).ball) != null) {
-            tempBall = (((Grid) bt31).ball);
-            (((Grid) bt31).ball) = null;
-            ((Grid) bt31).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(31, bt31);
+        buttonAction(31);     // TODO add your handling code here:
     }//GEN-LAST:event_bt31ActionPerformed
 
     private void bt32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt32ActionPerformed
-        if ((((Grid) bt32).ball) == null) {
-            (((Grid) bt32).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt32).setBackground(null);
-            } else {
-                ((Grid) bt32).CreateTheBall(tempBall.color);
-                ((Grid) bt32).setBackground((((Grid) bt32).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt32).ball) != null) {
-            tempBall = (((Grid) bt32).ball);
-            (((Grid) bt32).ball) = null;
-            ((Grid) bt32).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(32, bt32);
+        buttonAction(32);     // TODO add your handling code here:
     }//GEN-LAST:event_bt32ActionPerformed
 
     private void bt33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt33ActionPerformed
-        if ((((Grid) bt33).ball) == null) {
-            (((Grid) bt33).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt33).setBackground(null);
-            } else {
-                ((Grid) bt33).CreateTheBall(tempBall.color);
-                ((Grid) bt33).setBackground((((Grid) bt33).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt33).ball) != null) {
-            tempBall = (((Grid) bt33).ball);
-            (((Grid) bt33).ball) = null;
-            ((Grid) bt33).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(33, bt33);
+        buttonAction(33);      // TODO add your handling code here:
     }//GEN-LAST:event_bt33ActionPerformed
 
     private void bt34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt34ActionPerformed
-        if ((((Grid) bt34).ball) == null) {
-            (((Grid) bt34).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt34).setBackground(null);
-            } else {
-                ((Grid) bt34).CreateTheBall(tempBall.color);
-                ((Grid) bt34).setBackground((((Grid) bt34).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt34).ball) != null) {
-            tempBall = (((Grid) bt34).ball);
-            (((Grid) bt34).ball) = null;
-            ((Grid) bt34).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(34, bt34);
+        buttonAction(34);       // TODO add your handling code here:
     }//GEN-LAST:event_bt34ActionPerformed
 
     private void bt35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt35ActionPerformed
-        if ((((Grid) bt35).ball) == null) {
-            (((Grid) bt35).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt35).setBackground(null);
-            } else {
-                ((Grid) bt35).CreateTheBall(tempBall.color);
-                ((Grid) bt35).setBackground((((Grid) bt35).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt35).ball) != null) {
-            tempBall = (((Grid) bt35).ball);
-            (((Grid) bt35).ball) = null;
-            ((Grid) bt35).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(35, bt35);
+        buttonAction(35);        // TODO add your handling code here:
     }//GEN-LAST:event_bt35ActionPerformed
 
     private void bt36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt36ActionPerformed
-        if ((((Grid) bt36).ball) == null) {
-            (((Grid) bt36).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt36).setBackground(null);
-            } else {
-                ((Grid) bt36).CreateTheBall(tempBall.color);
-                ((Grid) bt36).setBackground((((Grid) bt36).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt36).ball) != null) {
-            tempBall = (((Grid) bt36).ball);
-            (((Grid) bt36).ball) = null;
-            ((Grid) bt36).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(36, bt36);
+        buttonAction(36);      // TODO add your handling code here:
     }//GEN-LAST:event_bt36ActionPerformed
 
     private void bt37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt37ActionPerformed
-        if ((((Grid) bt37).ball) == null) {
-            (((Grid) bt37).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt37).setBackground(null);
-            } else {
-                ((Grid) bt37).CreateTheBall(tempBall.color);
-                ((Grid) bt37).setBackground((((Grid) bt37).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt37).ball) != null) {
-            tempBall = (((Grid) bt37).ball);
-            (((Grid) bt37).ball) = null;
-            ((Grid) bt37).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(37, bt37);
+        buttonAction(37);      // TODO add your handling code here:
     }//GEN-LAST:event_bt37ActionPerformed
 
     private void bt38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt38ActionPerformed
-        if ((((Grid) bt38).ball) == null) {
-            (((Grid) bt38).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt38).setBackground(null);
-            } else {
-                ((Grid) bt38).CreateTheBall(tempBall.color);
-                ((Grid) bt38).setBackground((((Grid) bt38).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt38).ball) != null) {
-            tempBall = (((Grid) bt38).ball);
-            (((Grid) bt38).ball) = null;
-            ((Grid) bt38).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(38, bt38);
+        buttonAction(38);       // TODO add your handling code here:
     }//GEN-LAST:event_bt38ActionPerformed
 
     private void bt39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt39ActionPerformed
-        if ((((Grid) bt39).ball) == null) {
-            (((Grid) bt39).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt39).setBackground(null);
-            } else {
-                ((Grid) bt39).CreateTheBall(tempBall.color);
-                ((Grid) bt39).setBackground((((Grid) bt39).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt39).ball) != null) {
-            tempBall = (((Grid) bt39).ball);
-            (((Grid) bt39).ball) = null;
-            ((Grid) bt39).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(39, bt39);
+        buttonAction(39);     // TODO add your handling code here:
     }//GEN-LAST:event_bt39ActionPerformed
 
     private void bt40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt40ActionPerformed
-        if ((((Grid) bt40).ball) == null) {
-            (((Grid) bt40).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt40).setBackground(null);
-            } else {
-                ((Grid) bt40).CreateTheBall(tempBall.color);
-                ((Grid) bt40).setBackground((((Grid) bt40).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt40).ball) != null) {
-            tempBall = (((Grid) bt40).ball);
-            (((Grid) bt40).ball) = null;
-            ((Grid) bt40).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(40, bt40);
+        buttonAction(40);     // TODO add your handling code here:
     }//GEN-LAST:event_bt40ActionPerformed
 
     private void bt41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt41ActionPerformed
-        if ((((Grid) bt41).ball) == null) {
-            (((Grid) bt41).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt41).setBackground(null);
-            } else {
-                ((Grid) bt41).CreateTheBall(tempBall.color);
-                ((Grid) bt41).setBackground((((Grid) bt41).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt41).ball) != null) {
-            tempBall = (((Grid) bt41).ball);
-            (((Grid) bt41).ball) = null;
-            ((Grid) bt41).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(41, bt41);
+        buttonAction(41);       // TODO add your handling code here:
     }//GEN-LAST:event_bt41ActionPerformed
 
     private void bt42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt42ActionPerformed
-        if ((((Grid) bt42).ball) == null) {
-            (((Grid) bt42).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt42).setBackground(null);
-            } else {
-                ((Grid) bt42).CreateTheBall(tempBall.color);
-                ((Grid) bt42).setBackground((((Grid) bt42).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt42).ball) != null) {
-            tempBall = (((Grid) bt42).ball);
-            (((Grid) bt42).ball) = null;
-            ((Grid) bt42).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(42, bt42);
+        buttonAction(42);       // TODO add your handling code here:
     }//GEN-LAST:event_bt42ActionPerformed
 
     private void bt43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt43ActionPerformed
-        if ((((Grid) bt43).ball) == null) {
-            (((Grid) bt43).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt43).setBackground(null);
-            } else {
-                ((Grid) bt43).CreateTheBall(tempBall.color);
-                ((Grid) bt43).setBackground((((Grid) bt43).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt43).ball) != null) {
-            tempBall = (((Grid) bt43).ball);
-            (((Grid) bt43).ball) = null;
-            ((Grid) bt43).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(43, bt43);
+        buttonAction(43);     // TODO add your handling code here:
     }//GEN-LAST:event_bt43ActionPerformed
 
     private void bt44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt44ActionPerformed
-        if ((((Grid) bt44).ball) == null) {
-            (((Grid) bt44).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt44).setBackground(null);
-            } else {
-                ((Grid) bt44).CreateTheBall(tempBall.color);
-                ((Grid) bt44).setBackground((((Grid) bt44).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt44).ball) != null) {
-            tempBall = (((Grid) bt44).ball);
-            (((Grid) bt44).ball) = null;
-            ((Grid) bt44).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(44, bt44);
+        buttonAction(44);     // TODO add your handling code here:
     }//GEN-LAST:event_bt44ActionPerformed
 
     private void bt45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt45ActionPerformed
-        if ((((Grid) bt45).ball) == null) {
-            (((Grid) bt45).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt45).setBackground(null);
-            } else {
-                ((Grid) bt45).CreateTheBall(tempBall.color);
-                ((Grid) bt45).setBackground((((Grid) bt45).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt45).ball) != null) {
-            tempBall = (((Grid) bt45).ball);
-            (((Grid) bt45).ball) = null;
-            ((Grid) bt45).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(45, bt45);
+        buttonAction(45);       // TODO add your handling code here:
     }//GEN-LAST:event_bt45ActionPerformed
 
     private void bt46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt46ActionPerformed
-        if ((((Grid) bt46).ball) == null) {
-            (((Grid) bt46).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt46).setBackground(null);
-            } else {
-                ((Grid) bt46).CreateTheBall(tempBall.color);
-                ((Grid) bt46).setBackground((((Grid) bt46).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt46).ball) != null) {
-            tempBall = (((Grid) bt46).ball);
-            (((Grid) bt46).ball) = null;
-            ((Grid) bt46).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(46, bt46);
+        buttonAction(46);        // TODO add your handling code here:
     }//GEN-LAST:event_bt46ActionPerformed
 
     private void bt47ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt47ActionPerformed
-        if ((((Grid) bt47).ball) == null) {
-            (((Grid) bt47).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt47).setBackground(null);
-            } else {
-                ((Grid) bt47).CreateTheBall(tempBall.color);
-                ((Grid) bt47).setBackground((((Grid) bt47).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt47).ball) != null) {
-            tempBall = (((Grid) bt47).ball);
-            (((Grid) bt47).ball) = null;
-            ((Grid) bt47).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(47, bt47);
+        buttonAction(47);        // TODO add your handling code here:
     }//GEN-LAST:event_bt47ActionPerformed
 
     private void bt48ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt48ActionPerformed
-        if ((((Grid) bt48).ball) == null) {
-            (((Grid) bt48).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt48).setBackground(null);
-            } else {
-                ((Grid) bt48).CreateTheBall(tempBall.color);
-                ((Grid) bt48).setBackground((((Grid) bt48).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt48).ball) != null) {
-            tempBall = (((Grid) bt48).ball);
-            (((Grid) bt48).ball) = null;
-            ((Grid) bt48).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(48, bt48);
+        buttonAction(48);        // TODO add your handling code here:
     }//GEN-LAST:event_bt48ActionPerformed
 
     private void bt49ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt49ActionPerformed
-        if ((((Grid) bt49).ball) == null) {
-            (((Grid) bt49).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt49).setBackground(null);
-            } else {
-                ((Grid) bt49).CreateTheBall(tempBall.color);
-                ((Grid) bt49).setBackground((((Grid) bt49).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt49).ball) != null) {
-            tempBall = (((Grid) bt49).ball);
-            (((Grid) bt49).ball) = null;
-            ((Grid) bt49).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(49, bt49);
+        buttonAction(49);      // TODO add your handling code here:
     }//GEN-LAST:event_bt49ActionPerformed
 
     private void bt50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt50ActionPerformed
-        if ((((Grid) bt50).ball) == null) {
-            (((Grid) bt50).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt50).setBackground(null);
-            } else {
-                ((Grid) bt50).CreateTheBall(tempBall.color);
-                ((Grid) bt50).setBackground((((Grid) bt50).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt50).ball) != null) {
-            tempBall = (((Grid) bt50).ball);
-            (((Grid) bt50).ball) = null;
-            ((Grid) bt50).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(50, bt50);
+        buttonAction(50);      // TODO add your handling code here:
     }//GEN-LAST:event_bt50ActionPerformed
 
     private void bt51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt51ActionPerformed
-        if ((((Grid) bt51).ball) == null) {
-            (((Grid) bt51).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt51).setBackground(null);
-            } else {
-                ((Grid) bt51).CreateTheBall(tempBall.color);
-                ((Grid) bt51).setBackground((((Grid) bt51).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt51).ball) != null) {
-            tempBall = (((Grid) bt51).ball);
-            (((Grid) bt51).ball) = null;
-            ((Grid) bt51).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(51, bt51);
+        buttonAction(51);      // TODO add your handling code here:
     }//GEN-LAST:event_bt51ActionPerformed
 
     private void bt52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt52ActionPerformed
-        if ((((Grid) bt52).ball) == null) {
-            (((Grid) bt52).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt52).setBackground(null);
-            } else {
-                ((Grid) bt52).CreateTheBall(tempBall.color);
-                ((Grid) bt52).setBackground((((Grid) bt52).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt52).ball) != null) {
-            tempBall = (((Grid) bt52).ball);
-            (((Grid) bt52).ball) = null;
-            ((Grid) bt52).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(52, bt52);
+        buttonAction(52);        // TODO add your handling code here:
     }//GEN-LAST:event_bt52ActionPerformed
 
     private void bt53ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt53ActionPerformed
-        if ((((Grid) bt53).ball) == null) {
-            (((Grid) bt53).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt53).setBackground(null);
-            } else {
-                ((Grid) bt53).CreateTheBall(tempBall.color);
-                ((Grid) bt53).setBackground((((Grid) bt53).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt53).ball) != null) {
-            tempBall = (((Grid) bt53).ball);
-            (((Grid) bt53).ball) = null;
-            ((Grid) bt53).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(53, bt53);
+        buttonAction(53);      // TODO add your handling code here:
     }//GEN-LAST:event_bt53ActionPerformed
 
     private void bt54ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt54ActionPerformed
-        if ((((Grid) bt54).ball) == null) {
-            (((Grid) bt54).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt54).setBackground(null);
-            } else {
-                ((Grid) bt54).CreateTheBall(tempBall.color);
-                ((Grid) bt54).setBackground((((Grid) bt54).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt54).ball) != null) {
-            tempBall = (((Grid) bt54).ball);
-            (((Grid) bt54).ball) = null;
-            ((Grid) bt54).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(54, bt54);
+        buttonAction(54);     // TODO add your handling code here:
     }//GEN-LAST:event_bt54ActionPerformed
 
     private void bt55ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt55ActionPerformed
-        if ((((Grid) bt55).ball) == null) {
-            (((Grid) bt55).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt55).setBackground(null);
-            } else {
-                ((Grid) bt55).CreateTheBall(tempBall.color);
-                ((Grid) bt55).setBackground((((Grid) bt55).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt55).ball) != null) {
-            tempBall = (((Grid) bt55).ball);
-            (((Grid) bt55).ball) = null;
-            ((Grid) bt55).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(55, bt55);
+        buttonAction(55);        // TODO add your handling code here:
     }//GEN-LAST:event_bt55ActionPerformed
 
     private void bt56ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt56ActionPerformed
-        if ((((Grid) bt56).ball) == null) {
-            (((Grid) bt56).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt56).setBackground(null);
-            } else {
-                ((Grid) bt56).CreateTheBall(tempBall.color);
-                ((Grid) bt56).setBackground((((Grid) bt56).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt56).ball) != null) {
-            tempBall = (((Grid) bt56).ball);
-            (((Grid) bt56).ball) = null;
-            ((Grid) bt56).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(56, bt56);
+        buttonAction(56);        // TODO add your handling code here:
     }//GEN-LAST:event_bt56ActionPerformed
 
     private void bt57ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt57ActionPerformed
-        if ((((Grid) bt57).ball) == null) {
-            (((Grid) bt57).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt57).setBackground(null);
-            } else {
-                ((Grid) bt57).CreateTheBall(tempBall.color);
-                ((Grid) bt57).setBackground((((Grid) bt57).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt57).ball) != null) {
-            tempBall = (((Grid) bt57).ball);
-            (((Grid) bt57).ball) = null;
-            ((Grid) bt57).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(57, bt57);
+        buttonAction(57);       // TODO add your handling code here:
     }//GEN-LAST:event_bt57ActionPerformed
 
     private void bt58ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt58ActionPerformed
-        if ((((Grid) bt58).ball) == null) {
-            (((Grid) bt58).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt58).setBackground(null);
-            } else {
-                ((Grid) bt58).CreateTheBall(tempBall.color);
-                ((Grid) bt58).setBackground((((Grid) bt58).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt58).ball) != null) {
-            tempBall = (((Grid) bt58).ball);
-            (((Grid) bt58).ball) = null;
-            ((Grid) bt58).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(58, bt58);
+        buttonAction(58);        // TODO add your handling code here:
     }//GEN-LAST:event_bt58ActionPerformed
 
     private void bt59ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt59ActionPerformed
-        if ((((Grid) bt59).ball) == null) {
-            (((Grid) bt59).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt59).setBackground(null);
-            } else {
-                ((Grid) bt59).CreateTheBall(tempBall.color);
-                ((Grid) bt59).setBackground((((Grid) bt59).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt59).ball) != null) {
-            tempBall = (((Grid) bt59).ball);
-            (((Grid) bt59).ball) = null;
-            ((Grid) bt59).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(49, bt59);
+        buttonAction(59);       // TODO add your handling code here:
     }//GEN-LAST:event_bt59ActionPerformed
 
     private void bt60ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt60ActionPerformed
-        if ((((Grid) bt60).ball) == null) {
-            (((Grid) bt60).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt60).setBackground(null);
-            } else {
-                ((Grid) bt60).CreateTheBall(tempBall.color);
-                ((Grid) bt60).setBackground((((Grid) bt60).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt60).ball) != null) {
-            tempBall = (((Grid) bt60).ball);
-            (((Grid) bt60).ball) = null;
-            ((Grid) bt60).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(60, bt60);
+        buttonAction(60);       // TODO add your handling code here:
     }//GEN-LAST:event_bt60ActionPerformed
 
     private void bt61ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt61ActionPerformed
-        if ((((Grid) bt61).ball) == null) {
-            (((Grid) bt61).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt61).setBackground(null);
-            } else {
-                ((Grid) bt61).CreateTheBall(tempBall.color);
-                ((Grid) bt61).setBackground((((Grid) bt61).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt61).ball) != null) {
-            tempBall = (((Grid) bt61).ball);
-            (((Grid) bt61).ball) = null;
-            ((Grid) bt61).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(61, bt61);
+        buttonAction(61);        // TODO add your handling code here:
     }//GEN-LAST:event_bt61ActionPerformed
 
     private void bt62ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt62ActionPerformed
-        if ((((Grid) bt62).ball) == null) {
-            (((Grid) bt62).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt62).setBackground(null);
-            } else {
-                ((Grid) bt62).CreateTheBall(tempBall.color);
-                ((Grid) bt62).setBackground((((Grid) bt62).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt62).ball) != null) {
-            tempBall = (((Grid) bt62).ball);
-            (((Grid) bt62).ball) = null;
-            ((Grid) bt62).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(62, bt62);
+        buttonAction(62);        // TODO add your handling code here:
     }//GEN-LAST:event_bt62ActionPerformed
 
     private void bt63ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt63ActionPerformed
-        if ((((Grid) bt63).ball) == null) {
-            (((Grid) bt63).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt63).setBackground(null);
-            } else {
-                ((Grid) bt9).CreateTheBall(tempBall.color);
-                ((Grid) bt63).setBackground((((Grid) bt63).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt63).ball) != null) {
-            tempBall = (((Grid) bt63).ball);
-            (((Grid) bt63).ball) = null;
-            ((Grid) bt63).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(63, bt63);
+        buttonAction(63);        // TODO add your handling code here:
     }//GEN-LAST:event_bt63ActionPerformed
 
     private void bt64ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt64ActionPerformed
-        if ((((Grid) bt64).ball) == null) {
-            (((Grid) bt64).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt64).setBackground(null);
-            } else {
-                ((Grid) bt64).CreateTheBall(tempBall.color);
-                ((Grid) bt64).setBackground((((Grid) bt64).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt64).ball) != null) {
-            tempBall = (((Grid) bt64).ball);
-            (((Grid) bt64).ball) = null;
-            ((Grid) bt64).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(64, bt64);
+        buttonAction(64);        // TODO add your handling code here:
     }//GEN-LAST:event_bt64ActionPerformed
 
     private void bt65ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt65ActionPerformed
-        if ((((Grid) bt65).ball) == null) {
-            (((Grid) bt65).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt65).setBackground(null);
-            } else {
-                ((Grid) bt65).CreateTheBall(tempBall.color);
-                ((Grid) bt65).setBackground((((Grid) bt65).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt65).ball) != null) {
-            tempBall = (((Grid) bt65).ball);
-            (((Grid) bt65).ball) = null;
-            ((Grid) bt65).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(65, bt65);
+        buttonAction(65);        // TODO add your handling code here:
     }//GEN-LAST:event_bt65ActionPerformed
 
     private void bt66ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt66ActionPerformed
-        if ((((Grid) bt66).ball) == null) {
-            (((Grid) bt66).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt66).setBackground(null);
-            } else {
-                ((Grid) bt66).CreateTheBall(tempBall.color);
-                ((Grid) bt66).setBackground((((Grid) bt66).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt66).ball) != null) {
-            tempBall = (((Grid) bt66).ball);
-            (((Grid) bt66).ball) = null;
-            ((Grid) bt66).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(66, bt66);
+        buttonAction(66);       // TODO add your handling code here:
     }//GEN-LAST:event_bt66ActionPerformed
 
     private void bt67ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt67ActionPerformed
-        if ((((Grid) bt67).ball) == null) {
-            (((Grid) bt67).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt67).setBackground(null);
-            } else {
-                ((Grid) bt67).CreateTheBall(tempBall.color);
-                ((Grid) bt67).setBackground((((Grid) bt67).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt67).ball) != null) {
-            tempBall = (((Grid) bt67).ball);
-            (((Grid) bt67).ball) = null;
-            ((Grid) bt67).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(67, bt67);
+        buttonAction(67);       // TODO add your handling code here:
     }//GEN-LAST:event_bt67ActionPerformed
 
     private void bt68ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt68ActionPerformed
-        if ((((Grid) bt68).ball) == null) {
-            (((Grid) bt68).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt68).setBackground(null);
-            } else {
-                ((Grid) bt68).CreateTheBall(tempBall.color);
-                ((Grid) bt68).setBackground((((Grid) bt68).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt68).ball) != null) {
-            tempBall = (((Grid) bt68).ball);
-            (((Grid) bt68).ball) = null;
-            ((Grid) bt68).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(68, bt68);
+        buttonAction(68);       // TODO add your handling code here:
     }//GEN-LAST:event_bt68ActionPerformed
 
     private void bt69ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt69ActionPerformed
-        if ((((Grid) bt69).ball) == null) {
-            (((Grid) bt69).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt69).setBackground(null);
-            } else {
-                ((Grid) bt69).CreateTheBall(tempBall.color);
-                ((Grid) bt69).setBackground((((Grid) bt69).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt69).ball) != null) {
-            tempBall = (((Grid) bt69).ball);
-            (((Grid) bt69).ball) = null;
-            ((Grid) bt69).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(69, bt69);
+        buttonAction(69);        // TODO add your handling code here:
     }//GEN-LAST:event_bt69ActionPerformed
 
     private void bt70ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt70ActionPerformed
-        if ((((Grid) bt70).ball) == null) {
-            (((Grid) bt70).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt70).setBackground(null);
-            } else {
-                ((Grid) bt70).CreateTheBall(tempBall.color);
-                ((Grid) bt70).setBackground((((Grid) bt70).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt70).ball) != null) {
-            tempBall = (((Grid) bt70).ball);
-            (((Grid) bt70).ball) = null;
-            ((Grid) bt70).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(70, bt70);
+        buttonAction(70);        // TODO add your handling code here:
     }//GEN-LAST:event_bt70ActionPerformed
 
     private void bt71ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt71ActionPerformed
-        if ((((Grid) bt71).ball) == null) {
-            (((Grid) bt71).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt71).setBackground(null);
-            } else {
-                ((Grid) bt71).CreateTheBall(tempBall.color);
-                ((Grid) bt71).setBackground((((Grid) bt71).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt71).ball) != null) {
-            tempBall = (((Grid) bt71).ball);
-            (((Grid) bt71).ball) = null;
-            ((Grid) bt71).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(71, bt71);
+        buttonAction(71);        // TODO add your handling code here:
     }//GEN-LAST:event_bt71ActionPerformed
 
     private void bt72ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt72ActionPerformed
-        if ((((Grid) bt72).ball) == null) {
-            (((Grid) bt72).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt72).setBackground(null);
-            } else {
-                ((Grid) bt72).CreateTheBall(tempBall.color);
-                ((Grid) bt72).setBackground((((Grid) bt72).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt72).ball) != null) {
-            tempBall = (((Grid) bt72).ball);
-            (((Grid) bt72).ball) = null;
-            ((Grid) bt72).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(72, bt72);
+        buttonAction(72);       // TODO add your handling code here:
     }//GEN-LAST:event_bt72ActionPerformed
 
     private void bt73ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt73ActionPerformed
-        if ((((Grid) bt73).ball) == null) {
-            (((Grid) bt73).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt73).setBackground(null);
-            } else {
-                ((Grid) bt73).CreateTheBall(tempBall.color);
-                ((Grid) bt73).setBackground((((Grid) bt73).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt73).ball) != null) {
-            tempBall = (((Grid) bt73).ball);
-            (((Grid) bt73).ball) = null;
-            ((Grid) bt73).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(73, bt73);
+        buttonAction(73);       // TODO add your handling code here:
     }//GEN-LAST:event_bt73ActionPerformed
 
     private void bt74ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt74ActionPerformed
-        if ((((Grid) bt74).ball) == null) {
-            (((Grid) bt74).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt74).setBackground(null);
-            } else {
-                ((Grid) bt74).CreateTheBall(tempBall.color);
-                ((Grid) bt74).setBackground((((Grid) bt74).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt74).ball) != null) {
-            tempBall = (((Grid) bt74).ball);
-            (((Grid) bt74).ball) = null;
-            ((Grid) bt74).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(74, bt74);
+        buttonAction(74);       // TODO add your handling code here:
     }//GEN-LAST:event_bt74ActionPerformed
 
     private void bt75ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt75ActionPerformed
-        if ((((Grid) bt75).ball) == null) {
-            (((Grid) bt75).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt75).setBackground(null);
-            } else {
-                ((Grid) bt75).CreateTheBall(tempBall.color);
-                ((Grid) bt75).setBackground((((Grid) bt75).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt75).ball) != null) {
-            tempBall = (((Grid) bt75).ball);
-            (((Grid) bt75).ball) = null;
-            ((Grid) bt75).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(75, bt75);
+        buttonAction(75);        // TODO add your handling code here:
     }//GEN-LAST:event_bt75ActionPerformed
 
     private void bt76ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt76ActionPerformed
-        if ((((Grid) bt76).ball) == null) {
-            (((Grid) bt76).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt76).setBackground(null);
-            } else {
-                ((Grid) bt76).CreateTheBall(tempBall.color);
-                ((Grid) bt76).setBackground((((Grid) bt76).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt76).ball) != null) {
-            tempBall = (((Grid) bt76).ball);
-            (((Grid) bt76).ball) = null;
-            ((Grid) bt76).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(76, bt76);
+        buttonAction(76);       // TODO add your handling code here:
     }//GEN-LAST:event_bt76ActionPerformed
 
     private void bt77ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt77ActionPerformed
-        if ((((Grid) bt77).ball) == null) {
-            (((Grid) bt77).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt77).setBackground(null);
-            } else {
-                ((Grid) bt77).CreateTheBall(tempBall.color);
-                ((Grid) bt77).setBackground((((Grid) bt77).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt77).ball) != null) {
-            tempBall = (((Grid) bt77).ball);
-            (((Grid) bt77).ball) = null;
-            ((Grid) bt77).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(77, bt77);
+        buttonAction(77);       // TODO add your handling code here:
     }//GEN-LAST:event_bt77ActionPerformed
 
     private void bt78ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt78ActionPerformed
-        if ((((Grid) bt78).ball) == null) {
-            (((Grid) bt78).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt78).setBackground(null);
-            } else {
-                ((Grid) bt78).CreateTheBall(tempBall.color);
-                ((Grid) bt78).setBackground((((Grid) bt78).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt78).ball) != null) {
-            tempBall = (((Grid) bt78).ball);
-            (((Grid) bt78).ball) = null;
-            ((Grid) bt78).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(78, bt78);
+        buttonAction(78);       // TODO add your handling code here:
     }//GEN-LAST:event_bt78ActionPerformed
 
     private void bt79ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt79ActionPerformed
-        if ((((Grid) bt79).ball) == null) {
-            (((Grid) bt79).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt79).setBackground(null);
-            } else {
-                ((Grid) bt79).CreateTheBall(tempBall.color);
-                ((Grid) bt79).setBackground((((Grid) bt79).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt79).ball) != null) {
-            tempBall = (((Grid) bt79).ball);
-            (((Grid) bt79).ball) = null;
-            ((Grid) bt79).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(79, bt79);
+        buttonAction(79);       // TODO add your handling code here:
     }//GEN-LAST:event_bt79ActionPerformed
 
     private void bt80ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt80ActionPerformed
-        if ((((Grid) bt80).ball) == null) {
-            (((Grid) bt80).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt80).setBackground(null);
-            } else {
-                ((Grid) bt80).CreateTheBall(tempBall.color);
-                ((Grid) bt80).setBackground((((Grid) bt80).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt80).ball) != null) {
-            tempBall = (((Grid) bt80).ball);
-            (((Grid) bt80).ball) = null;
-            ((Grid) bt80).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(80, bt80);
+        buttonAction(80);        // TODO add your handling code here:
     }//GEN-LAST:event_bt80ActionPerformed
 
     private void bt81ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt81ActionPerformed
-        if ((((Grid) bt81).ball) == null) {
-            (((Grid) bt81).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt81).setBackground(null);
-            } else {
-                ((Grid) bt81).CreateTheBall(tempBall.color);
-                ((Grid) bt81).setBackground((((Grid) bt81).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt81).ball) != null) {
-            tempBall = (((Grid) bt81).ball);
-            (((Grid) bt81).ball) = null;
-            ((Grid) bt81).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(81, bt81);
+        buttonAction(81);        // TODO add your handling code here:
     }//GEN-LAST:event_bt81ActionPerformed
 
     private void bt82ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt82ActionPerformed
-        if ((((Grid) bt82).ball) == null) {
-            (((Grid) bt82).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt82).setBackground(null);
-            } else {
-                ((Grid) bt82).CreateTheBall(tempBall.color);
-                ((Grid) bt82).setBackground((((Grid) bt82).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt82).ball) != null) {
-            tempBall = (((Grid) bt82).ball);
-            (((Grid) bt82).ball) = null;
-            ((Grid) bt82).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(82, bt82);
+        buttonAction(82);        // TODO add your handling code here:
     }//GEN-LAST:event_bt82ActionPerformed
 
     private void bt83ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt83ActionPerformed
-        if ((((Grid) bt83).ball) == null) {
-            (((Grid) bt83).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt83).setBackground(null);
-            } else {
-                ((Grid) bt83).CreateTheBall(tempBall.color);
-                ((Grid) bt83).setBackground((((Grid) bt83).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt83).ball) != null) {
-            tempBall = (((Grid) bt83).ball);
-            (((Grid) bt83).ball) = null;
-            ((Grid) bt83).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(83, bt83);
+        buttonAction(83);        // TODO add your handling code here:
     }//GEN-LAST:event_bt83ActionPerformed
 
     private void bt84ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt84ActionPerformed
-        if ((((Grid) bt84).ball) == null) {
-            (((Grid) bt84).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt84).setBackground(null);
-            } else {
-                ((Grid) bt84).CreateTheBall(tempBall.color);
-                ((Grid) bt84).setBackground((((Grid) bt84).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt84).ball) != null) {
-            tempBall = (((Grid) bt84).ball);
-            (((Grid) bt84).ball) = null;
-            ((Grid) bt84).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(84, bt84);
+        buttonAction(84);       // TODO add your handling code here:
     }//GEN-LAST:event_bt84ActionPerformed
 
     private void bt85ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt85ActionPerformed
-        if ((((Grid) bt85).ball) == null) {
-            (((Grid) bt85).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt85).setBackground(null);
-            } else {
-                ((Grid) bt85).CreateTheBall(tempBall.color);
-                ((Grid) bt85).setBackground((((Grid) bt85).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt85).ball) != null) {
-            tempBall = (((Grid) bt85).ball);
-            (((Grid) bt85).ball) = null;
-            ((Grid) bt85).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(85, bt85);
+        buttonAction(85);        // TODO add your handling code here:
     }//GEN-LAST:event_bt85ActionPerformed
 
     private void bt86ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt86ActionPerformed
-        if ((((Grid) bt86).ball) == null) {
-            (((Grid) bt86).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt86).setBackground(null);
-            } else {
-                ((Grid) bt86).CreateTheBall(tempBall.color);
-                ((Grid) bt86).setBackground((((Grid) bt86).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt86).ball) != null) {
-            tempBall = (((Grid) bt86).ball);
-            (((Grid) bt86).ball) = null;
-            ((Grid) bt86).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(86, bt86);
+        buttonAction(86);       // TODO add your handling code here:
     }//GEN-LAST:event_bt86ActionPerformed
 
     private void bt87ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt87ActionPerformed
-        if ((((Grid) bt87).ball) == null) {
-            (((Grid) bt87).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt87).setBackground(null);
-            } else {
-                ((Grid) bt87).CreateTheBall(tempBall.color);
-                ((Grid) bt87).setBackground((((Grid) bt87).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt87).ball) != null) {
-            tempBall = (((Grid) bt87).ball);
-            (((Grid) bt87).ball) = null;
-            ((Grid) bt87).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(87, bt87);
+        buttonAction(87);        // TODO add your handling code here:
     }//GEN-LAST:event_bt87ActionPerformed
 
     private void bt88ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt88ActionPerformed
-        if ((((Grid) bt88).ball) == null) {
-            (((Grid) bt88).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt88).setBackground(null);
-            } else {
-                ((Grid) bt88).CreateTheBall(tempBall.color);
-                ((Grid) bt88).setBackground((((Grid) bt88).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt88).ball) != null) {
-            tempBall = (((Grid) bt88).ball);
-            (((Grid) bt88).ball) = null;
-            ((Grid) bt88).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(88, bt88);
+        buttonAction(88);        // TODO add your handling code here:
     }//GEN-LAST:event_bt88ActionPerformed
 
     private void bt89ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt89ActionPerformed
-        if ((((Grid) bt89).ball) == null) {
-            (((Grid) bt89).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt89).setBackground(null);
-            } else {
-                ((Grid) bt89).CreateTheBall(tempBall.color);
-                ((Grid) bt89).setBackground((((Grid) bt89).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt89).ball) != null) {
-            tempBall = (((Grid) bt89).ball);
-            (((Grid) bt89).ball) = null;
-            ((Grid) bt89).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(89, bt89);
+        buttonAction(89);        // TODO add your handling code here:
     }//GEN-LAST:event_bt89ActionPerformed
 
     private void bt90ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt90ActionPerformed
-        if ((((Grid) bt90).ball) == null) {
-            (((Grid) bt90).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt90).setBackground(null);
-            } else {
-                ((Grid) bt90).CreateTheBall(tempBall.color);
-                ((Grid) bt90).setBackground((((Grid) bt90).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt90).ball) != null) {
-            tempBall = (((Grid) bt90).ball);
-            (((Grid) bt90).ball) = null;
-            ((Grid) bt90).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(90, bt90);
+        buttonAction(90);        // TODO add your handling code here:
     }//GEN-LAST:event_bt90ActionPerformed
 
     private void bt91ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt91ActionPerformed
-        if ((((Grid) bt91).ball) == null) {
-            (((Grid) bt91).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt91).setBackground(null);
-            } else {
-                ((Grid) bt91).CreateTheBall(tempBall.color);
-                ((Grid) bt91).setBackground((((Grid) bt91).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt91).ball) != null) {
-            tempBall = (((Grid) bt91).ball);
-            (((Grid) bt91).ball) = null;
-            ((Grid) bt91).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(91, bt91);
+        buttonAction(91);       // TODO add your handling code here:
     }//GEN-LAST:event_bt91ActionPerformed
 
     private void bt92ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt92ActionPerformed
-        if ((((Grid) bt92).ball) == null) {
-            (((Grid) bt92).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt92).setBackground(null);
-            } else {
-                ((Grid) bt92).CreateTheBall(tempBall.color);
-                ((Grid) bt92).setBackground((((Grid) bt92).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt92).ball) != null) {
-            tempBall = (((Grid) bt92).ball);
-            (((Grid) bt92).ball) = null;
-            ((Grid) bt92).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(92, bt92);
+        buttonAction(92);        // TODO add your handling code here:
     }//GEN-LAST:event_bt92ActionPerformed
 
     private void bt93ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt93ActionPerformed
-        if ((((Grid) bt93).ball) == null) {
-            (((Grid) bt93).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt93).setBackground(null);
-            } else {
-                ((Grid) bt93).CreateTheBall(tempBall.color);
-                ((Grid) bt93).setBackground((((Grid) bt93).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt93).ball) != null) {
-            tempBall = (((Grid) bt93).ball);
-            (((Grid) bt93).ball) = null;
-            ((Grid) bt93).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(93, bt93);
+        buttonAction(93);        // TODO add your handling code here:
     }//GEN-LAST:event_bt93ActionPerformed
 
     private void bt94ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt94ActionPerformed
-        if ((((Grid) bt94).ball) == null) {
-            (((Grid) bt94).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt94).setBackground(null);
-            } else {
-                ((Grid) bt94).CreateTheBall(tempBall.color);
-                ((Grid) bt94).setBackground((((Grid) bt94).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt94).ball) != null) {
-            tempBall = (((Grid) bt94).ball);
-            (((Grid) bt94).ball) = null;
-            ((Grid) bt94).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(94, bt94);
+        buttonAction(94);       // TODO add your handling code here:
     }//GEN-LAST:event_bt94ActionPerformed
 
     private void bt95ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt95ActionPerformed
-        if ((((Grid) bt95).ball) == null) {
-            (((Grid) bt95).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt95).setBackground(null);
-            } else {
-                ((Grid) bt95).CreateTheBall(tempBall.color);
-                ((Grid) bt95).setBackground((((Grid) bt95).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt95).ball) != null) {
-            tempBall = (((Grid) bt95).ball);
-            (((Grid) bt95).ball) = null;
-            ((Grid) bt95).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(95, bt95);
+        buttonAction(95);        // TODO add your handling code here:
     }//GEN-LAST:event_bt95ActionPerformed
 
     private void bt96ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt96ActionPerformed
-        if ((((Grid) bt96).ball) == null) {
-            (((Grid) bt96).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt96).setBackground(null);
-            } else {
-                ((Grid) bt96).CreateTheBall(tempBall.color);
-                ((Grid) bt96).setBackground((((Grid) bt96).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt96).ball) != null) {
-            tempBall = (((Grid) bt96).ball);
-            (((Grid) bt96).ball) = null;
-            ((Grid) bt96).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(96, bt96);
+        buttonAction(96);        // TODO add your handling code here:
     }//GEN-LAST:event_bt96ActionPerformed
 
     private void bt97ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt97ActionPerformed
-        if ((((Grid) bt97).ball) == null) {
-            (((Grid) bt97).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt97).setBackground(null);
-            } else {
-                ((Grid) bt97).CreateTheBall(tempBall.color);
-                ((Grid) bt97).setBackground((((Grid) bt97).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt97).ball) != null) {
-            tempBall = (((Grid) bt97).ball);
-            (((Grid) bt97).ball) = null;
-            ((Grid) bt97).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(97, bt97);
+        buttonAction(97);        // TODO add your handling code here:
     }//GEN-LAST:event_bt97ActionPerformed
 
     private void bt98ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt98ActionPerformed
-        if ((((Grid) bt98).ball) == null) {
-            (((Grid) bt98).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt98).setBackground(null);
-            } else {
-                ((Grid) bt98).CreateTheBall(tempBall.color);
-                ((Grid) bt98).setBackground((((Grid) bt98).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt98).ball) != null) {
-            tempBall = (((Grid) bt98).ball);
-            (((Grid) bt98).ball) = null;
-            ((Grid) bt98).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(98, bt98);
+        buttonAction(98);        // TODO add your handling code here:
     }//GEN-LAST:event_bt98ActionPerformed
 
     private void bt99ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt99ActionPerformed
-        if ((((Grid) bt99).ball) == null) {
-            (((Grid) bt99).ball) = tempBall;
-            if (tempBall == null) {
-                ((Grid) bt99).setBackground(null);
-            } else {
-                ((Grid) bt99).CreateTheBall(tempBall.color);
-                ((Grid) bt99).setBackground((((Grid) bt99).ball).color);
-                tempBall = null;
-            }
-        } else if ((((Grid) bt99).ball) != null) {
-            tempBall = (((Grid) bt99).ball);
-            (((Grid) bt99).ball) = null;
-            ((Grid) bt99).setBackground(null);
-        }        // TODO add your handling code here:
+        buttonList.set(99, bt99);
+        buttonAction(99);        // TODO add your handling code here:
     }//GEN-LAST:event_bt99ActionPerformed
 
     private void jButton82ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton82ActionPerformed
-        // TODO add your handling code here:
+        timer.stop();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton82ActionPerformed
+    public void buttonAction(int i) {
+        final Grid middleButton;
+        middleButton = (Grid) (buttonList.get(i));
+        if ((middleButton.ball) != null) {
+            tempBall = middleButton.ball;
+            movingGrid = middleButton;
+        } else if ((middleButton.ball) == null) {
+
+            if (tempBall == null) {
+                middleButton.setBackground(null);
+            } else {
+                middleButton.CreateTheBall(tempBall.color);
+                middleButton.setBackground((middleButton.ball).color);
+                movingGrid.ball=null;
+                movingGrid.setBackground(null);
+                tempBall = null;
+                createThreeBall();
+            }
+        } // TODO add your handling code here:
+    }
 
     public int findThePosition() {
         Grid tempGrid = null;
@@ -3249,7 +2066,17 @@ public class NewJFrame extends javax.swing.JFrame {
         }
         return true;
     }
-
+    public void createThreeBall(){
+        int temp1 = findThePosition();
+        ((Grid) buttonList.get(temp1)).CreateTheBall();
+        ((Grid) buttonList.get(temp1)).setBackground(((Grid) buttonList.get(temp1)).ball.color);
+        int temp2 = findThePosition();
+        ((Grid) buttonList.get(temp2)).CreateTheBall();
+        ((Grid) buttonList.get(temp2)).setBackground(((Grid) buttonList.get(temp2)).ball.color);
+        int temp3 = findThePosition();
+        ((Grid) buttonList.get(temp3)).CreateTheBall();
+        ((Grid) buttonList.get(temp3)).setBackground(((Grid) buttonList.get(temp3)).ball.color);
+    }
     public int[] massArray() {
         int[] array = new int[100];
         for (int i = 0; i <= 99; i++) {
@@ -3268,6 +2095,17 @@ public class NewJFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    Timer timer = new Timer(500, new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+            if (flag) {
+                bt0.setBackground((((Grid) bt0).ball).color);
+                flag = false;
+            } else {
+                bt0.setBackground(null);
+                flag = true;
+            }
+        }
+    });
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt0;
     private javax.swing.JButton bt1;

@@ -33,5 +33,8 @@ public class start {
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
         frame.setTitle("搞怪碰球");
+        for(int i = 0;i < frame.buttonList.size();i++ ){
+            System.out.println(((Grid)frame.buttonList.get(i)).coodrinate);
+        }
     }
 }
